@@ -22,7 +22,6 @@ export class LabsComponent {
     'Crear proyecto',
     'Crear componentes',
     'Crear servicios',
-
   ]);
 
   name = 'Andres';
@@ -31,11 +30,17 @@ export class LabsComponent {
 
   disabled = true;
   img = 'https://w3schools.com/howto/img_avatar.png';
+
   person = {
-    name: 'Amdres',
+    name: 'Andres',
     age: '32',
     avatar: 'https://w3schools.com/howto/img_avatar.png',
   };
+  personSignal = signal({
+    name: 'Andres',
+    age: 5,
+    avatar: 'https://w3schools.com/howto/img_avatar.png',
+  });
 
   clickHandler() {
     alert('Papitas');
@@ -55,5 +60,13 @@ export class LabsComponent {
     const newValue = input.value;
     this.nameSignal.set(newValue);
     console.log(event);
+  }
+
+  changeAge(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newValue = input.value;
+    this.personSignal.update((prevState) => {
+      return { ...prevState, age: parseInt(newValue, 10) };
+    });
   }
 }

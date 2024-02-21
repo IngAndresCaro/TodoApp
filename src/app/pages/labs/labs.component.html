@@ -46,5 +46,22 @@
       {{i}}{{task}}
     </li>
   </ul>
+  <hr>
+
+  <h1>ngIf</h1>
+  <div *ngIf="1 !== 1">
+    Mi contenido
+  </div>
+
+  <div *ngIf="nameSignal() === 'Andres'">
+    Si es un nombre
+  </div>
+  <input type="number" [value]="personSignal().age" (change)="changeAge($event)">
+  <div *ngIf="personSignal().name === 'Andres' && personSignal().age > 18; else elseBlock">
+    Si es mayor
+  </div>
+  <ng-template #elseBlock>
+    Soy Andres y soy menor de 18
+  </ng-template>
 
 </div>
