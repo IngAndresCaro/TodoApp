@@ -6,10 +6,13 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './labs.component.html',
-  styleUrl: './labs.component.css'
+  styleUrl: './labs.component.css',
 })
 export class LabsComponent {
   welcome = 'Bienvenido';
 
   tasks = ['Instalar el angular CLI', 'Crear proyecto', 'Crear componentes'];
+
+  name = 'Andres';
+  age = '32';
 }
