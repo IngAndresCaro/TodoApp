@@ -20,8 +20,16 @@ export class LabsComponent {
   img = 'https://w3schools.com/howto/img_avatar.png'
   person = {
     name: 'Amdres',
-    edad: '32',
+    age: '32',
     avatar: 'https://w3schools.com/howto/img_avatar.png'
+  }
+
+  clickHandler(){
+    alert('Papitas')
+  }
+
+  changeHandler(event: Event){
+    console.log(event)
   }
 
 }
