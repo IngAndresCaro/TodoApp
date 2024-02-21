@@ -24,5 +24,18 @@
 <button (dblclick)="clickHandler()">double click me</button>
 <p>(change)</p>
 <input type="number" [value]="person.age" (change)="changeHandler($event)">
+<hr />
 
+<p>(change)</p>
+<input type="text" [value]="person.name" (change)="changeHandler($event)">
+<p>(keydown)</p>
+<input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
+<p>(keydown shift)</p>
+<input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
+<hr />
+
+<h1>Signals</h1>
+<p>{{nameSignal()}}</p>
+<p>(change)</p>
+<input type="text" [value]="nameSignal()" (change)="changeHandlerSignal($event)">
 </div>
