@@ -1,41 +1,50 @@
 <div class="container">
   <h1>Hola mundo</h1>
-<h2>{{welcome}}</h2>
-<ul>
-  <li *ngFor="let task of tasks">
-    {{task}}
-  </li>
-</ul>
-<hr />
+  <h2>{{welcome}}</h2>
+  <ul>
+    <li *ngFor="let task of tasks">
+      {{task}}
+    </li>
+  </ul>
+  <hr />
 
-<h2>{{'Hola'.repeat(4)}}</h2>
-<p>la suma es 3 + 3 es {{3 + 3}}</p>
-<p>Hola soy {{name}} y mi edad es {{age}}</p>
-<hr />
+  <h2>{{'Hola'.repeat(4)}}</h2>
+  <p>la suma es 3 + 3 es {{3 + 3}}</p>
+  <p>Hola soy {{name}} y mi edad es {{age}}</p>
+  <hr />
 
-<img style="width: 30px; height: 30px" [src]="img" alt="">
-<img style="width: 30px; height: 30px" [src]="person.avatar" alt="">
-<input type="text"  [value]="person.name">
-<button [disabled]="disabled">Click Me</button>
-<p>person: {{person.name}}</p>
-<hr />
+  <img style="width: 30px; height: 30px" [src]="img" alt="">
+  <img style="width: 30px; height: 30px" [src]="person.avatar" alt="">
+  <input type="text" [value]="person.name">
+  <button [disabled]="disabled">Click Me</button>
+  <p>person: {{person.name}}</p>
+  <hr />
 
-<button (click)="clickHandler()">click me</button>
-<button (dblclick)="clickHandler()">double click me</button>
-<p>(change)</p>
-<input type="number" [value]="person.age" (change)="changeHandler($event)">
-<hr />
+  <button (click)="clickHandler()">click me</button>
+  <button (dblclick)="clickHandler()">double click me</button>
+  <p>(change)</p>
+  <input type="number" [value]="person.age" (change)="changeHandler($event)">
+  <hr />
 
-<p>(change)</p>
-<input type="text" [value]="person.name" (change)="changeHandler($event)">
-<p>(keydown)</p>
-<input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
-<p>(keydown shift)</p>
-<input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
-<hr />
+  <p>(change)</p>
+  <input type="text" [value]="person.name" (change)="changeHandler($event)">
+  <p>(keydown)</p>
+  <input type="text" [value]="person.name" (keydown)="keydownHandler($event)">
+  <p>(keydown shift)</p>
+  <input type="text" [value]="person.name" (keydown.shift.t)="clickHandler()">
+  <hr />
 
-<h1>Signals</h1>
-<p>{{nameSignal()}}</p>
-<p>(change)</p>
-<input type="text" [value]="nameSignal()" (change)="changeHandlerSignal($event)">
+  <h1>Signals</h1>
+  <p>{{nameSignal()}}</p>
+  <p>(change)</p>
+  <input type="text" [value]="nameSignal()" (change)="changeHandlerSignal($event)">
+  <hr>
+
+  <ul>
+    <p>Total: {{tasksSignal().length}}</p>
+    <li *ngFor="let task of tasksSignal(); index as i">
+      {{i}}{{task}}
+    </li>
+  </ul>
+
 </div>

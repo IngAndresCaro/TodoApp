@@ -11,38 +11,49 @@ import { Component, signal } from '@angular/core';
 export class LabsComponent {
   welcome = 'Bienvenido';
 
-  tasks = ['Instalar el angular CLI', 'Crear proyecto', 'Crear componentes'];
+  tasks = [
+    'Instalar el angular CLI',
+    'Crear proyecto',
+    'Crear componentes',
+    'Crear servicios',
+  ];
+  tasksSignal = signal([
+    'Instalar el angular CLI',
+    'Crear proyecto',
+    'Crear componentes',
+    'Crear servicios',
+
+  ]);
 
   name = 'Andres';
-  nameSignal = signal('Andres')
+  nameSignal = signal('Andres');
   age = '32';
 
   disabled = true;
-  img = 'https://w3schools.com/howto/img_avatar.png'
+  img = 'https://w3schools.com/howto/img_avatar.png';
   person = {
     name: 'Amdres',
     age: '32',
-    avatar: 'https://w3schools.com/howto/img_avatar.png'
+    avatar: 'https://w3schools.com/howto/img_avatar.png',
+  };
+
+  clickHandler() {
+    alert('Papitas');
   }
 
-  clickHandler(){
-    alert('Papitas')
+  changeHandler(event: Event) {
+    console.log(event);
   }
 
-  changeHandler(event: Event){
-    console.log(event)
-  }
-
-  keydownHandler(event: KeyboardEvent){
+  keydownHandler(event: KeyboardEvent) {
     const input = event.target as HTMLInputElement;
-    console.log(input.value)
+    console.log(input.value);
   }
 
-  changeHandlerSignal(event: Event){
+  changeHandlerSignal(event: Event) {
     const input = event.target as HTMLInputElement;
-    const newValue = input.value
-    this.nameSignal.set(newValue)
-    console.log(event)
+    const newValue = input.value;
+    this.nameSignal.set(newValue);
+    console.log(event);
   }
-
 }
