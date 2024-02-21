@@ -9,11 +9,23 @@ import { Component, signal } from '@angular/core';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  tasksSignal = signal([
+  tasks = signal([
     'Instalar el angular CLI',
     'Crear proyecto',
     'Crear componentes',
     'Crear servicios',
-
   ]);
+
+  changeHandler(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const newTasks = input.value;
+    this.tasks.update((tasks) => [...tasks, newTasks]);
+    input.value = '';
+  }
+
+  deleteTask(index: number) {
+    this.tasks.update((tasks) =>
+      tasks.filter((task, position) => position !== index)
+    );
+  }
 }
