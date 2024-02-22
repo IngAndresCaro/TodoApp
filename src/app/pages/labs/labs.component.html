@@ -78,5 +78,17 @@
   <h1>input</h1>
   <input type="color" [formControl]="colorCtrl">
   <p>color: {{colorCtrl.value}}</p>
+  <hr>
 
+  <h1>Estilos</h1>
+  <svg>
+    <g>
+      <rect x="0" y="0" height="100" width="100" [attr.fill]="colorCtrl.value" />
+    </g>
+  </svg>
+  <hr>
+
+  <h1>Estilos</h1>
+  <input type="number" [formControl]="widthCtrl">
+  <span class="box" [style.width.px]="widthCtrl.value"></span>
 </div>

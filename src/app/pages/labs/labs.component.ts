@@ -43,10 +43,13 @@ export class LabsComponent {
     avatar: 'https://w3schools.com/howto/img_avatar.png',
   });
 
-  colorCtrl = new FormControl()
+  colorCtrl = new FormControl();
+  widthCtrl = new FormControl(50, {
+    nonNullable: true
+  });
 
-  constructor(){
-    this.colorCtrl.valueChanges.subscribe(value => console.log(value))
+  constructor() {
+    this.colorCtrl.valueChanges.subscribe((value) => console.log(value));
   }
 
   clickHandler() {
@@ -76,7 +79,7 @@ export class LabsComponent {
       return { ...prevState, age: parseInt(newValue, 10) };
     });
   }
-  
+
   changeName(event: Event) {
     const input = event.target as HTMLInputElement;
     const newValue = input.value;

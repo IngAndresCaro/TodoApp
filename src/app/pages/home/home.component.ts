@@ -46,7 +46,7 @@ export class HomeComponent {
 
   changeHandler() {
     if (this.newTaskCrtl.valid && this.newTaskCrtl.value !== '') {
-      const value = this.newTaskCrtl.value;
+      const value = this.newTaskCrtl.value.trim();
       this.addTask(value);
       this.newTaskCrtl.setValue('');
     }
