@@ -1,6 +1,6 @@
 import { Task } from './../models/tasks';
 import { CommonModule } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -33,6 +33,21 @@ export class HomeComponent {
       completed: false,
     },
   ]);
+
+  filter = signal<'all' | 'pending' | 'completed'>('all');
+
+  taskByFilter = computed(() => {
+    const filter = this.filter();
+    const tasks = this.tasks();
+    if (filter == 'pending') {
+      return tasks.filter((task) => !task.completed);
+    }
+    if (filter == 'completed') {
+      return tasks.filter((task) => task.completed);
+    }
+    return tasks;
+  });
+
   newTaskCrtl = new FormControl('', {
     nonNullable: true,
     validators: [
@@ -78,5 +93,41 @@ export class HomeComponent {
         return task;
       })
     );
+  }
+
+  updateTaskEditingMode(index: number) {
+    if (this.tasks()[index].completed) return;
+    this.tasks.update((task) =>
+      task.map((task, position) => {
+        if (position === index)
+          return {
+            ...task,
+            editing: true,
+          };
+        return {
+          ...task,
+          editing: false,
+        };
+      })
+    );
+  }
+
+  updateTaskText(index: number, event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.tasks.update((task) =>
+      task.map((task, position) => {
+        if (position === index)
+          return {
+            ...task,
+            title: input.value,
+            editing: false,
+          };
+        return task;
+      })
+    );
+  }
+
+  changeFilter(filter: 'all' | 'pending' | 'completed') {
+    this.filter.set(filter);
   }
 }
