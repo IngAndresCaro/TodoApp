@@ -30,3 +30,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Estilos importados
 
 https://gist.github.com/nicobytes/ba2252b0b5ac2cbdafc40c0accd24862
+
+## URL para correr en firabase
+
+https://todo-app-f2d7c.web.app
+
+
+## Para actualizar sintaxis
+ng g @angular/core:control-flow

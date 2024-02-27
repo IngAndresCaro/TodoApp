@@ -11,8 +11,8 @@
     <!-- This section should be hidden by default and shown when there are todos -->
     <section class="main">
       <ul class="todo-list">
-        <li (dblclick)="updateTaskEditingMode(i)" [class.editing]="task.editing" [class.completed]="task.completed"
-          *ngFor="let task of taskByFilter(); index as i">
+        @for (task of taskByFilter(); track task; let i = $index) {
+        <li (dblclick)="updateTaskEditingMode(i)" [class.editing]="task.editing" [class.completed]="task.completed">
           <div class="view">
             <input class="toggle" type="checkbox" [checked]="task.completed" (change)="updateTask(i)" />
             <label>{{task.title}}</label>
@@ -20,6 +20,7 @@
           </div>
           <input class="edit" (keydown.enter)="updateTaskText(i, $event)" [value]="task.title" />
         </li>
+        }
         <!-- <li class="completed">
           <div class="view">
             <input class="toggle" type="checkbox" checked />
@@ -47,14 +48,17 @@
       </ul>
     </section>
     <!-- This footer should be hidden by default and shown when there are todos -->
-    <footer class="footer" *ngIf="taskByFilter().length > 0">
+    @if (taskByFilter().length > 0) {
+    <footer class="footer">
       <!-- This should be `0 items left` by default -->
       <span class="todo-count">
         <strong>{{taskByFilter().length}}</strong>
-        <span *ngIf="taskByFilter().length == 1; else itemsNotification"> item</span>
-        <ng-template #itemsNotification> <span> items</span> </ng-template>
+        @if (taskByFilter().length == 1) {
+        <span> item</span>
+        } @else {
+        <span> items</span>
+        }
       </span>
-
       <!-- Remove this if you don't implement routing -->
       <!-- <h1>{{filter()}}</h1> -->
       <ul class="filters">
@@ -71,10 +75,11 @@
       <!-- Hidden if no completed items are left ↓ -->
       <button class="clear-completed">Clear completed</button>
     </footer>
+    }
   </div>
 </section>
 
-<!-- 
+<!--
 <pre>
   <code>
     {{tasks() | json}}

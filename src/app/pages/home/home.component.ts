@@ -1,12 +1,20 @@
 import { Task } from './../models/tasks';
-import { CommonModule } from '@angular/common';
-import { Component, computed, signal, effect, OnInit, inject, Injector } from '@angular/core';
+
+import {
+  Component,
+  computed,
+  signal,
+  effect,
+  OnInit,
+  inject,
+  Injector,
+} from '@angular/core';
 import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -36,7 +44,7 @@ export class HomeComponent implements OnInit {
     ],
   });
 
-  injector = inject(Injector)
+  injector = inject(Injector);
 
   constructor() {}
 
@@ -50,10 +58,13 @@ export class HomeComponent implements OnInit {
   }
 
   trackTasks() {
-    effect(() => {
-      const tasks = this.tasks();
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-    }, {injector: this.injector});
+    effect(
+      () => {
+        const tasks = this.tasks();
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+      },
+      { injector: this.injector }
+    );
   }
 
   changeHandler() {

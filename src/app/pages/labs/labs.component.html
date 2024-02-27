@@ -2,9 +2,11 @@
   <h1>Hola mundo</h1>
   <h2>{{welcome}}</h2>
   <ul>
-    <li *ngFor="let task of tasks">
+    @for (task of tasks; track task) {
+    <li>
       {{task}}
     </li>
+    }
   </ul>
   <hr />
 
@@ -42,36 +44,53 @@
 
   <ul>
     <p>Total: {{tasksSignal().length}}</p>
-    <li *ngFor="let task of tasksSignal(); index as i">
+    @for (task of tasksSignal(); track task; let i = $index) {
+    <li>
       {{i}}{{task}}
     </li>
+    }
   </ul>
   <hr>
 
   <h1>ngIf</h1>
-  <div *ngIf="1 !== 1">
+  @if (1 !== 1) {
+  <div>
     Mi contenido
   </div>
+  }
 
-  <div *ngIf="nameSignal() === 'Andres'">
+  @if (nameSignal() === 'Andres') {
+  <div>
     Si es un nombre
   </div>
+  }
   <input type="number" [value]="personSignal().age" (change)="changeAge($event)">
-  <div *ngIf="personSignal().name === 'Andres' && personSignal().age > 18; else elseBlock">
+  @if (personSignal().name === 'Andres' && personSignal().age > 18) {
+  <div>
     Si es mayor
   </div>
-  <ng-template #elseBlock>
-    Soy Andres y soy menor de 18
-  </ng-template>
+  } @else {
+  Soy Andres y soy menor de 18
+  }
   <hr>
 
   <h1>ngSwitch</h1>
   <input type="string" [value]="personSignal().name" (change)="changeName($event)">
-  <div [ngSwitch]="personSignal().name">
-    <p *ngSwitchCase="'Andres'">Yo soy Andres</p>
-    <p *ngSwitchCase="'Julian'">Yo soy Julian</p>
-    <p *ngSwitchCase="'Ana'">Yo soy Ana</p>
-    <p *ngSwitchDefault>No esta el nombre</p>
+  <div>
+    @switch (personSignal().name) {
+    @case ('Andres') {
+    <p>Yo soy Andres</p>
+    }
+    @case ('Julian') {
+    <p>Yo soy Julian</p>
+    }
+    @case ('Ana') {
+    <p>Yo soy Ana</p>
+    }
+    @default {
+    <p>No esta el nombre</p>
+    }
+    }
   </div>
   <hr>
 
@@ -100,5 +119,66 @@
   <p>
     <input type="text">
   </p>
+  <hr>
+
+  <h1>Nueva sentencia if</h1>
+  @if (nameSignal() === 'Andres'){
+  <div>Es Andres</div>
+  }
+
+  @if(personSignal().name === 'Andres' && personSignal().age > 18;){
+  <p>Si es mayor</p>
+  } @else {
+  <p>es menor</p>
+  }
+  <hr>
+
+  <h1>Nueva estructura For</h1>
+  <ul>
+    @for (task of tasksSignal(); track task; let i = $index) {
+    <li>
+      {{i}}{{task}}
+    </li>
+    }
+  </ul>
+  <ul>
+    @for (task of tasksSignal(); track task; let i = $index) {
+    <li>{{i}} {{task}}</li>
+    } @empty {
+    <li><strong>La lista esta vasia</strong></li>
+    }
+  </ul>
+  <hr>
+
+  <h1>Nueva estructura ngSwitch</h1>
+  <input type="string" [value]="personSignal().name" (change)="changeName($event)">
+  <div>
+    @switch (personSignal().name) {
+    @case ('Andres') {
+    <p>Yo soy Andres</p>
+    }
+    @case ('Julian') {
+    <p>Yo soy Julian</p>
+    }
+    @case ('Ana') {
+    <p>Yo soy Ana</p>
+    }
+    @default {
+    <p>No esta el nombre</p>
+    }
+    }
+  </div>
+
+  <div>
+    @switch (personSignal().name) {
+    @case ('Andres') {Yo soy Andres}
+    @case ('Julian') {Yo soy Julian}
+    @case ('Ana') {Yo soy Ana}
+    @default {
+    <p>No se encontro</p>
+    }
+    }
+  </div>
+  <hr>
 
 </div>
